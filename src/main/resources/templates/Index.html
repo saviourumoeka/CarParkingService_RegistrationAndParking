@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Parking Services: Home</title>
+</head>
+<body>
+	
+	<div style="height:100px;width:100%;"><h1 style="margin-left:30%;margin-right:20%; color:black;">Welcome To Kriss Parking Services</h1></div>
+		<form th:action="@{Cars/parkCar}" method=post>
+			
+			<label for="input-id" class="col-sm-2">Plate Number Search</label>
+			<input name="plateNumber" type="text">
+			<input type="submit" value="Action">
+			
+		</form>
+
+		<p th:text="${msg}"></p>
+</body>
+</html>
