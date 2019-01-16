@@ -6,15 +6,16 @@
 </head>
 <body>
 	
-	<div style="height:100px;width:100%;"><h1 style="margin-left:30%;margin-right:20%; color:black;">Welcome To Kriss Parking Services</h1></div>
-		<form th:action="@{Cars/parkCar}" method=post>
+	<div style="height:100px;width:100%;"><h1 style="margin-left:30%;margin-right:20%; color:black;">
+	Welcome To Kriss Parking Service</h1></div>
+		<div style="height:100px;width:100%;"><form style="margin-left:30%;margin-right:20%; color:black;" th:action="@{/parkCar}" method=post>
 			
 			<label for="input-id" class="col-sm-2">Plate Number Search</label>
 			<input name="plateNumber" type="text">
 			<input type="submit" value="Action">
 			
-		</form>
+		</form></div>
 
-		<p th:text="${msg}"></p>
+		<div style="height:100px;width:100%;"><p style="margin-left:30%;margin-right:20%; color:black;" th:text="${msg}"></p></div>
 </body>
 </html>

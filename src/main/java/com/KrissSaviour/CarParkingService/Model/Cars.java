@@ -9,7 +9,6 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.UniqueElements;
 
 /*
  * This is the car model class use to create the car table in the DB
@@ -23,8 +22,8 @@ public class Cars {
 	private int id;
 	@NotEmpty
 	@NotNull
-	@UniqueElements
 	private String plateNumber;
+	
 	@OneToOne(fetch=FetchType.LAZY,mappedBy="car")
 	private ParkingSpot parkingSpot;
 
@@ -39,9 +38,7 @@ public class Cars {
 	 * @param id
 	 * @param carPlateNumber
 	 */
-	public Cars(int id, String plateNumber) {
-		super();
-		this.id = id;
+	public Cars(String plateNumber) {
 		this.plateNumber = plateNumber;
 	}
 
@@ -71,7 +68,10 @@ public class Cars {
 
 	@Override
 	public String toString() {
-		return "Cars [id=" + id + ", plateNumber=" + plateNumber + ", parkingSpot=" + parkingSpot + "]";
+		return "Cars [id=" + id + ", plateNumber=" + plateNumber + "]";
 	}
 
+	
+
+	
 }

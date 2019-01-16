@@ -20,18 +20,17 @@ public class ParkingSpot {
 	private int id;
 	@NotEmpty
 	@NotNull
-	private String parkingSpot;
-	
+	private String spotName;
+
 	private Boolean vacancy;
 
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	private Cars car;
 
 	/**
 	 * No ARGS
 	 */
 	public ParkingSpot() {
-
 	}
 
 	/**
@@ -39,10 +38,9 @@ public class ParkingSpot {
 	 * @param parkingSpot
 	 * @param vacancy
 	 */
-	public ParkingSpot(int id, @NotEmpty @NotNull String parkingSpot, @NotEmpty @NotNull boolean vacancy) {
-		super();
+	public ParkingSpot(int id, String spotName, boolean vacancy) {
 		this.id = id;
-		this.parkingSpot = parkingSpot;
+		this.spotName = spotName;
 		this.vacancy = vacancy;
 	}
 
@@ -54,12 +52,12 @@ public class ParkingSpot {
 		this.id = id;
 	}
 
-	public String getParkingSpot() {
-		return parkingSpot;
+	public String getSpotName() {
+		return spotName;
 	}
 
 	public void setParkingSpot(String parkingSpot) {
-		this.parkingSpot = parkingSpot;
+		this.spotName = parkingSpot;
 	}
 
 	public boolean isVacancy() {
@@ -80,10 +78,7 @@ public class ParkingSpot {
 
 	@Override
 	public String toString() {
-		return "ParkingSpot [id=" + id + ", parkingSpot=" + parkingSpot + ", vacancy=" + vacancy + ", car=" + car
-				+ ", getId()=" + getId() + ", getParkingSpot()=" + getParkingSpot() + ", isVacancy()=" + isVacancy()
-				+ ", getCar()=" + getCar() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "ParkingSpot [id=" + id + ", spotName=" + spotName + ", vacancy=" + vacancy + ", car=" + car + "]";
 	}
 
 }
