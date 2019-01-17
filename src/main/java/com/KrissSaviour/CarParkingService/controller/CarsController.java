@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 
 import com.KrissSaviour.CarParkingService.Model.Cars;
@@ -30,9 +31,14 @@ public class CarsController {
 	EntityManager em;
 
 	// Query to find one free spot
-	public ParkingSpot findOneVacancy(int limit) {
-		return em.createQuery("Select p FROM ParkingSpot p WHERE p.vacancy=true", ParkingSpot.class)
-				.setMaxResults(limit).getSingleResult();
+	public ParkingSpot findOneVacancy() {
+		try {
+			return em.createQuery("Select p FROM ParkingSpot p WHERE p.vacancy=true", ParkingSpot.class)
+					.setMaxResults(1).getSingleResult();
+		} catch (NoResultException e) {
+			e.printStackTrace();
+			return null;
+		}
 	};
 
 	// Query to update car spot
@@ -59,7 +65,7 @@ public class CarsController {
 	// loads Index page
 	@RequestMapping("/")
 	public String Index(ModelMap mode) {
-		if(model==null) {
+		if(model == null) {
 			return "index";
 		}
 		mode.addAttribute("msg", model.get("msg"));
@@ -70,19 +76,24 @@ public class CarsController {
 	@RequestMapping("/parkCar")
 	@Transactional
 	public String getCarByPlateNumber(@RequestParam("plateNumber") String plateNumber, ModelMap mode) {
+		
+		if(plateNumber.isEmpty()) {
+			model=mode.addAttribute("msg", "Plate number cannot be empty");
+			return "redirect:/";
+		}
 		plateNumber = plateNumber.toUpperCase().trim();
 		// Matching car with plate number in DB
 		Cars car = carsRepo.findByPlateNumber(plateNumber);
 
 		// if car is no registered
 		// registration and parking of new car
-		if (car == null) {
+		if (car==null) {
 			Cars cars = new Cars(plateNumber);
 			carsRepo.save(cars);
 			//Getting Saved Car From DB
 			cars = carsRepo.findByPlateNumber(plateNumber);
-			ParkingSpot spot = findOneVacancy(1);
-			if(spot ==null) {
+			ParkingSpot spot = findOneVacancy();
+			if(spot==null) {
 				model=mode.addAttribute("msg", "Sorry We Are Out Of Parking Spots, Please Check Again Later");
 				return "redirect:/";
 			}
@@ -92,14 +103,14 @@ public class CarsController {
 			return "redirect:/";
 		}
 
-		if (car.getParkingSpot() != null) {
+		if (car.getParkingSpot() !=null) {
 			model=mode.addAttribute("msg",
 					"Car with plate number " + plateNumber + " Already parked at " + car.getParkingSpot().getSpotName());
 			return "redirect:/";
 		}
 
-		ParkingSpot spot = findOneVacancy(1);
-		if(spot ==null) {
+		ParkingSpot spot = findOneVacancy();
+		if(spot==null) {
 			model=mode.addAttribute("msg", "Sorry We Are Out Of Parking Spots, Please Check Again Later");
 			return "redirect:/";
 		}

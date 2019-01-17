@@ -1,10 +1,10 @@
 --Inserting Values into Parking Spot Table--
-insert into PARKING_SPOT(spot_Name,VACANCY) values ('A1',1);
-insert into PARKING_SPOT(spot_Name,VACANCY) values ('A3',1);
-insert into PARKING_SPOT(spot_Name,VACANCY) values ('B1',1);
-insert into PARKING_SPOT(spot_Name,VACANCY) values ('B2',1);
-insert into PARKING_SPOT(spot_Name,VACANCY) values ('C1',1);
-insert into PARKING_SPOT(spot_Name,VACANCY) values ('C2',1);
+insert into PARKING_SPOT(spot_Name,vacancy) values ('A1',1);
+insert into PARKING_SPOT(spot_Name,vacancy) values ('A2',1);
+insert into PARKING_SPOT(spot_Name,vacancy) values ('B1',1);
+insert into PARKING_SPOT(spot_Name,vacancy) values ('B2',1);
+insert into PARKING_SPOT(spot_Name,vacancy) values ('C1',1);
+insert into PARKING_SPOT(spot_Name,vacancy) values ('C2',1);
 
 --Inserting Values into Cars Table--
 

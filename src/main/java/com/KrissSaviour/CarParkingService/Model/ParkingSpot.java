@@ -1,13 +1,15 @@
 package com.KrissSaviour.CarParkingService.Model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /*
  * This is the parking spot model class use to create the parking spot table in the DB
@@ -18,12 +20,11 @@ public class ParkingSpot {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@NotEmpty
-	@NotNull
+	@Column(nullable=false,unique=true)
 	private String spotName;
-
 	private Boolean vacancy;
-
+	
+	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY)
 	private Cars car;
 
