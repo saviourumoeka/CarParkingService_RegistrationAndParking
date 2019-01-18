@@ -8,9 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
 /*
  * This is the parking spot model class use to create the parking spot table in the DB
  * */
@@ -24,7 +21,6 @@ public class ParkingSpot {
 	private String spotName;
 	private Boolean vacancy;
 	
-	@JsonIgnore
 	@OneToOne(fetch = FetchType.LAZY)
 	private Cars car;
 
