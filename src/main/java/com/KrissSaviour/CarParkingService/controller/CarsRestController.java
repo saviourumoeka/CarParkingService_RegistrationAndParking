@@ -5,7 +5,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,7 +49,7 @@ public class CarsRestController {
 
 	}
 	
-	@PatchMapping("/getcar/{plateNumber}")
+	@GetMapping("/getcar/{plateNumber}")
 	@Transactional
 	public Cars getCar(@PathVariable("plateNumber") String plateNumber) {
 

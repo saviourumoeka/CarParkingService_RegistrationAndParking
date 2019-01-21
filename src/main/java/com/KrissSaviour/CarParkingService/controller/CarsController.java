@@ -64,7 +64,7 @@ public class CarsController {
 
 	// loads Index page
 	@RequestMapping("/")
-	public String Index(ModelMap mode) {
+	public String index(ModelMap mode) {
 		if(model == null) {
 			return "index";
 		}

@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 
+
 /*
  * This is the car model class use to create the car table in the DB
  * */
